@@ -4,7 +4,7 @@ import { Eye, EyeOff, Lock, User, Mail, Shield } from 'lucide-react';
 
 // JSON Data Configuration
 const platformData = {
-  company: {
+  profile: {
     name: "42law Austria",
     logo: "42",
     currentDate: "December 15, 2024"
@@ -168,7 +168,7 @@ const platformData = {
 };
 
 // Authentication Component
-const AuthenticationScreen = ({ onAuthenticate }) => {
+const AuthenticationScreen = ({ onAuthenticate }: any) => {
   const [isLogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -178,7 +178,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
     { id: 2, email: 'lawyer@42law.at', password: 'lawyer123', name: 'Dr. Alexander Schmidt', role: 'Senior Associate' },
     { id: 3, email: 'user@42law.at', password: 'user123', name: 'Client User', role: 'Client' }
   ]);
-  
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -186,7 +186,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
     confirmPassword: ''
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: any) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
@@ -194,16 +194,16 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
     setError('');
   };
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
+  const validatePassword = (password: string) => {
     return password.length >= 6;
   };
 
-  const handleLogin = async (e) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -223,7 +223,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
     // Simulate API call delay
     setTimeout(() => {
       const user = users.find(u => u.email === formData.email && u.password === formData.password);
-      
+
       if (user) {
         onAuthenticate(user);
         setFormData({ email: '', password: '', name: '', confirmPassword: '' });
@@ -234,7 +234,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
     }, 1000);
   };
 
-  const handleRegister = async (e) => {
+  const handleRegister = async (e: any) => {
     e.preventDefault();
     setLoading(true);
     setError('');
@@ -277,7 +277,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
         name: formData.name,
         role: 'Client'
       };
-      
+
       setUsers([...users, newUser]);
       onAuthenticate(newUser);
       setFormData({ email: '', password: '', name: '', confirmPassword: '' });
@@ -298,14 +298,14 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
           </div>
 
           <div className="auth-tabs">
-            <button 
+            <button
               className={`auth-tab ${isLogin ? 'active' : ''}`}
               onClick={() => setIsLogin(true)}
             >
               <Lock size={18} />
               Login
             </button>
-            <button 
+            <button
               className={`auth-tab ${!isLogin ? 'active' : ''}`}
               onClick={() => setIsLogin(false)}
             >
@@ -385,8 +385,8 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
               </div>
             )}
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="auth-submit"
               disabled={loading}
             >
@@ -427,7 +427,7 @@ const AuthenticationScreen = ({ onAuthenticate }) => {
 };
 
 // Header Component
-const Header = ({ companyData, onLogout, currentUser }) => (
+const Header = ({ companyData, onLogout, currentUser }: any) => (
   <header className="header">
     <div className="logo">
       <div className="logo-icon">{companyData.logo}</div>
@@ -445,9 +445,9 @@ const Header = ({ companyData, onLogout, currentUser }) => (
 );
 
 // Navigation Component
-const Navigation = ({ navItems, activeTab, onTabChange }) => (
+const Navigation = ({ navItems, activeTab, onTabChange }: any) => (
   <nav className="nav-tabs">
-    {navItems.map(item => (
+    {navItems.map((item: any) => (
       <button
         key={item.id}
         className={`nav-tab ${activeTab === item.id ? 'active' : ''}`}
@@ -460,7 +460,7 @@ const Navigation = ({ navItems, activeTab, onTabChange }) => (
 );
 
 // Info Card Component
-const InfoCard = ({ title, description }) => (
+const InfoCard = ({ title, description }: any) => (
   <div className="info-card">
     <h3>{title}</h3>
     <p>{description}</p>
@@ -468,7 +468,7 @@ const InfoCard = ({ title, description }) => (
 );
 
 // Risk Warning Component
-const RiskWarning = ({ title, description }) => (
+const RiskWarning = ({ title, description }: any) => (
   <div className="risk-warning">
     <h4>{title}</h4>
     <p>{description}</p>
@@ -476,7 +476,7 @@ const RiskWarning = ({ title, description }) => (
 );
 
 // Document Item Component
-const DocumentItem = ({ title, status, fileName, filePath }) => (
+const DocumentItem = ({ title, status, fileName, filePath }: any) => (
   <div className="document-item">
     <div className="document-title">{title}</div>
     <div className="document-status">{status}</div>
@@ -486,14 +486,14 @@ const DocumentItem = ({ title, status, fileName, filePath }) => (
 );
 
 // Confidential Banner Component
-const ConfidentialBanner = ({ text }) => (
+const ConfidentialBanner = ({ text }: any) => (
   <div className="confidential-banner">
     🔒 {text}
   </div>
 );
 
 // Team Member Component
-const TeamMember = ({ member }) => (
+const TeamMember = ({ member }: any) => (
   <div className="team-member">
     <div className="member-avatar">{member.avatar}</div>
     <div className="member-name">{member.name}</div>
@@ -503,7 +503,7 @@ const TeamMember = ({ member }) => (
 );
 
 // Stat Card Component
-const StatCard = ({ number, label }) => (
+const StatCard = ({ number, label }: any) => (
   <div className="stat-card">
     <div className="stat-number">{number}</div>
     <div className="stat-label">{label}</div>
@@ -511,7 +511,7 @@ const StatCard = ({ number, label }) => (
 );
 
 // Value Card Component
-const ValueCard = ({ icon, title, description }) => (
+const ValueCard = ({ icon, title, description }: any) => (
   <div className="value-card">
     <div className="value-icon">{icon}</div>
     <div className="value-title">{title}</div>
@@ -520,7 +520,7 @@ const ValueCard = ({ icon, title, description }) => (
 );
 
 // Transaction Highlight Component
-const TransactionHighlight = ({ amount, description }) => (
+const TransactionHighlight = ({ amount, description }: any) => (
   <div className="transaction-highlight">
     <div className="transaction-amount">{amount}</div>
     <div className="transaction-description">{description}</div>
@@ -528,7 +528,7 @@ const TransactionHighlight = ({ amount, description }) => (
 );
 
 // Closing Documents Page Component
-const ClosingDocumentsPage = ({ data }) => (
+const ClosingDocumentsPage = ({ data }: any) => (
   <div className="main-card">
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
@@ -543,7 +543,7 @@ const ClosingDocumentsPage = ({ data }) => (
     <RiskWarning title={data.riskWarning.title} description={data.riskWarning.description} />
 
     <div className="document-list">
-      {data.documents.map((doc, index) => (
+      {data.documents.map((doc: any, index: number) => (
         <DocumentItem key={index} title={doc.title} status={doc.status} fileName={doc.fileName} filePath={doc.filePath} />
       ))}
     </div>
@@ -553,13 +553,13 @@ const ClosingDocumentsPage = ({ data }) => (
 );
 
 // Team Page Component
-const TeamPage = ({ data }) => (
+const TeamPage = ({ data }: any) => (
   <div className="main-card">
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
 
     <div className="team-grid">
-      {data.members.map((member, index) => (
+      {data.members.map((member: any, index: number) => (
         <TeamMember key={index} member={member} />
       ))}
     </div>
@@ -567,19 +567,19 @@ const TeamPage = ({ data }) => (
 );
 
 // Company Page Component
-const CompanyPage = ({ data }) => (
+const CompanyPage = ({ data }: any) => (
   <div className="main-card">
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
 
     <div className="stats-grid">
-      {data.stats.map((stat, index) => (
+      {data.stats.map((stat: any, index: number) => (
         <StatCard key={index} number={stat.number} label={stat.label} />
       ))}
     </div>
 
     <div className="company-values">
-      {data.values.map((value, index) => (
+      {data.values.map((value: any, index: number) => (
         <ValueCard key={index} icon={value.icon} title={value.title} description={value.description} />
       ))}
     </div>
@@ -587,7 +587,7 @@ const CompanyPage = ({ data }) => (
 );
 
 // Transaction Page Component
-const TransactionPage = ({ data }) => (
+const TransactionPage = ({ data }: any) => (
   <div className="main-card">
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
@@ -595,13 +595,13 @@ const TransactionPage = ({ data }) => (
     <TransactionHighlight amount={data.mainAmount} description={data.mainDescription} />
 
     <div className="info-grid">
-      {data.details.map((detail, index) => (
+      {data.details.map((detail: any, index: number) => (
         <InfoCard key={index} title={detail.title} description={detail.description} />
       ))}
     </div>
 
     <div className="stats-grid">
-      {data.stats.map((stat, index) => (
+      {data.stats.map((stat: any, index: number) => (
         <StatCard key={index} number={stat.number} label={stat.label} />
       ))}
     </div>
@@ -622,21 +622,21 @@ const LawPlatformApp = () => {
   useEffect(() => {
     const savedAuth = sessionStorage.getItem('42law_authenticated');
     const savedUser = sessionStorage.getItem('42law_user');
-    
+
     if (savedAuth === 'true' && savedUser) {
       setIsAuthenticated(true);
       setCurrentUser(JSON.parse(savedUser));
     }
   }, []);
 
-  const handleAuthenticate = (user) => {
+  const handleAuthenticate = (user: any) => {
     setIsAuthenticated(true);
     setCurrentUser(user);
     sessionStorage.setItem('42law_authenticated', 'true');
     sessionStorage.setItem('42law_user', JSON.stringify(user));
   };
 
-  const handleTabChange = (tabId) => {
+  const handleTabChange = (tabId: any) => {
     setActiveTab(tabId);
   };
 
@@ -655,7 +655,7 @@ const LawPlatformApp = () => {
       // Animation effect for cards
       const cards = document.querySelectorAll('.info-card, .team-member, .value-card');
 
-      cards.forEach((card, index) => {
+      cards.forEach((card: any, index: number) => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
 
@@ -1460,7 +1460,7 @@ const LawPlatformApp = () => {
 
       <div className="container">
         <Header
-          companyData={platformData.company}
+          companyData={platformData.profile}
           onLogout={handleLogout}
           currentUser={currentUser}
         />
