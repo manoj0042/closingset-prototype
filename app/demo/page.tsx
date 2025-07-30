@@ -5,167 +5,143 @@ import { Eye, EyeOff, Lock, User, Mail, Shield } from 'lucide-react';
 // JSON Data Configuration
 const platformData = {
   profile: {
-    name: "42law Austria",
-    logo: "42",
-    currentDate: "December 15, 2024"
+    logo:  "/42Law Logo.svg",
+    currentDate: "July 28, 2025"
   },
   navigation: [
+    { id: 'transaction', label: 'Transaction Overview', icon: '💰' },
     { id: 'closing', label: 'Closing Documents', icon: '📁' },
     { id: 'team', label: 'Our Team', icon: '👥' },
-    { id: 'company', label: 'Company Info', icon: '🏢' },
-    { id: 'transaction', label: 'Transaction Details', icon: '💰' }
   ],
   closingDocuments: {
-    title: "Legal Document Closing Portal",
-    subtitle: "Comprehensive Legal Review for Investment Decision - Easelink GmbH",
-    companyInfo: {
-      overview: "Easelink GmbH - Single-founder startup established in 2016, specializing in electric vehicle charging solutions",
-      investment: "Forward Equity Agreement with EUR 1,500,000 investment representing 43% of current capital raise",
-      shareholding: "Verbund's estimated shareholding upon conversion: 1.83% - 3.70% depending on future valuation",
-      legalStatus: "Comprehensive review completed with identified issues in conversion formula requiring negotiated solution"
-    },
-    riskWarning: {
-      title: "Key Risk Identified:",
-      description: "The Forward Equity Agreement contains a circular reference in the conversion formula that may require negotiated resolution at conversion time."
-    },
+    title: "Series B-14 Equity Financing",
+    subtitle: "€9.7 mio Equity Financing of Storebox Holding GmbH",
+   
+      
     documents: [
-      {
-        title: 'Investment Agreement',
-        status: '✅ Completed',
-        fileName: '01-Investment-Agreement.pdf',
-        filePath: 'closing-set/01-Investment-Agreement.pdf',
-        fileSize: '2.3 MB',
-      }
-      ,
-      {
-        title: 'Shareholder Agreement',
-        status: '✅ Completed',
-        fileName: '02-Shareholder-Agreement.pdf',
-        filePath: 'closing-set/02-Shareholder-Agreement.pdf',
-        fileSize: '1.8 MB',
-      },
-      {
-        title: 'trustee-agreement',
-        status: '✅ Completed',
-        fileName: '03-Trustee-Agreement.pdf',
-        filePath: 'closing-set/03-Trustee-Agreement.pdf',
-        fileSize: '1.2 MB',
-      }
-      ,
-      {
-        title: 'gesellschaftsvertrag',
-        status: '🔍 Under Review',
-        fileName: '04-Gesellschaftsvertrag.pdf',
-        filePath: 'closing-set/04-Gesellschaftsvertrag.pdf',
-        fileSize: '1.5 MB',
-      }
-      ,
-      {
-        title: 'aoGV-protokoll',
-        status: '✅ Completed',
-        fileName: '05-aoGV-protokoll.pdf',
-        filePath: 'closing-set/05-aoGV-protokoll.pdf',
-        fileSize: '2.0 MB',
-      }
+      { 
+    title: 'Investment Agreement', 
+    status: '✅ Completed', 
+    fileName: '01-Investment-Agreement.pdf', 
+    filePath: 'closing-set/01-Investment-Agreement.pdf', 
+    fileSize: '2.3 MB', 
+  },
+  { 
+    title: 'Shareholder Agreement', 
+    status: '✅ Completed', 
+    fileName: '02-Shareholder-Agreement.pdf', 
+    filePath: 'closing-set/02-Shareholder-Agreement.pdf', 
+    fileSize: '1.8 MB', 
+  },
+  { 
+    title: 'Trustee Agreement', 
+    status: '✅ Completed', 
+    fileName: '03-Trustee-Agreement.pdf', 
+    filePath: 'closing-set/03-Trustee-Agreement.pdf', 
+    fileSize: '1.2 MB', 
+  },
+  { 
+    title: 'gesellschaftsvertrag', 
+    status: '🔍 Under Review', 
+    fileName: '04-gesellschaftsvertrag.pdf', 
+    filePath: 'closing-set/04-gesellschaftsvertrag.pdf', 
+    fileSize: '1.5 MB', 
+  },
+  { 
+    title: 'aoGV-Protokoll', 
+    status: '✅ Completed', 
+    fileName: '05-aoGV-Protokoll.pdf', 
+    filePath: 'closing-set/05-aoGV-Protokoll.pdf', 
+    fileSize: '2.0 MB', 
+  },
+  { 
+    title: 'ubernahmeeerklarung', 
+    status: '✅ Completed', 
+    fileName: '06-ubernahmeerklarung.pdf', 
+    filePath: 'closing-set/06-ubernahmeerklarung.pdf', 
+    fileSize: '1.0 MB', 
+  },
+  { 
+    title: 'Bankbestätigung', 
+    status: '✅ Completed', 
+    fileName: '07-Bankbestatigung.pdf', 
+    filePath: 'closing-set/07-Bankbestatigung.pdf', 
+    fileSize: '1.4 MB', 
+  },
+  { 
+    title: 'firmenbuchanmeldung', 
+    status: '✅ Completed', 
+    fileName: '08-firmenbuchanmeldung.pdf', 
+    filePath: 'closing-set/08-firmenbuchanmeldung.pdf', 
+    fileSize: '1.6 MB', 
+  },
+  { 
+    title: 'Firmenbuchanmeldung', 
+    status: '✅ Completed', 
+    fileName: '09-Firmenbuchanmeldung.pdf', 
+    filePath: 'closing-set/09-Firmenbuchanmeldung.pdf', 
+    fileSize: '1.3 MB', 
+  },
+  { 
+    title: 'Eintragungsbeschluss', 
+    status: '✅ Completed', 
+    fileName: '10-Eintragungsbeschluss.pdf', 
+    filePath: 'closing-set/10-Eintragungsbeschluss.pdf', 
+    fileSize: '1.1 MB', 
+  }
+
     ]
   },
   team: {
-    title: "Meet Our Expert Legal Team",
-    subtitle: "World-class legal professionals delivering exceptional results",
+    title: "Meet Our Team",
+    subtitle: "Got any questions? Get in touch!",
     members: [
       {
-        name: "Dr. Maria Hofbausery",
+        name: "Dr. Christof Strasser",
         role: "Managing Partner",
-        avatar: "MH",
-        description: "Leading corporate lawyer with 15+ years in M&A and venture capital transactions. Specialized in cross-border investments and startup law."
+        avatar: "CS",
+        description: "Leading corporate lawyer with 15+ years in M&A and venture capital transactions. Specialized in cross-border investments and startup law.",
+        email: "c.strasser@42law.com",
+        linkedin: "https://www.linkedin.com/in/christof-strasser-4b304314"
       },
+
       {
-        name: "Dr. Alexander Schmidt",
+        name: " Michael Ademilua",
         role: "Senior Associate",
-        avatar: "AS",
-        description: "Expert in technology law and intellectual property with extensive experience in electric vehicle and clean tech sectors."
+        avatar: "MA",
+        description: "Expert in technology law and intellectual property with extensive experience in electric vehicle and clean tech sectors.",
+        email: "m.ademilua@42law.com",
+        linkedin: "https://www.linkedin.com/in/michael-ademilua"
       },
       {
-        name: "Lisa Müller",
-        role: "Legal Analyst",
-        avatar: "LM",
-        description: "Specialized in financial regulations and compliance, with deep expertise in Austrian and EU investment frameworks."
+        name: "Sathya Priya",
+        role: "Senior Associate",
+        avatar: "SP",
+        description: "Specialized in financial regulations and compliance, with deep expertise in Austrian and EU investment frameworks.",
+        email: "s.priya@42law.com",
+        linkedin: "https://linkedin.com/in/sathya-priya"
       },
-      {
-        name: "Thomas Kirchner",
-        role: "Transaction Coordinator",
-        avatar: "TK",
-        description: "Master of complex deal structuring with proven track record in managing high-stakes investment transactions."
-      }
+      
+
     ]
   },
-  company: {
-    title: "42law Austria - Excellence in Legal Services",
-    subtitle: "Austria's premier boutique law firm specializing in innovation and technology",
-    stats: [
-      { number: "150+", label: "Successful Transactions" },
-      { number: "€4.5B", label: "Total Deal Value" },
-      { number: "25+", label: "Countries Served" },
-      { number: "98%", label: "Client Satisfaction" }
-    ],
-    values: [
-      {
-        icon: "⚡",
-        title: "Innovation First",
-        description: "We embrace cutting-edge legal technology and innovative approaches to deliver superior results for our clients in the digital age."
-      },
-      {
-        icon: "🎯",
-        title: "Precision & Excellence",
-        description: "Every detail matters. Our meticulous attention to precision ensures flawless execution of complex legal transactions."
-      },
-      {
-        icon: "🌍",
-        title: "Global Perspective",
-        description: "Local expertise with international reach, connecting Austrian businesses to global opportunities and markets."
-      },
-      {
-        icon: "🚀",
-        title: "Future-Ready",
-        description: "Pioneering legal solutions for tomorrow's challenges, especially in cleantech, AI, and sustainable innovation sectors."
-      }
-    ]
-  },
+  
   transaction: {
-    title: "Transaction Commercials",
+    title: "Transaction Overview",
     subtitle: "Financial highlights and commercial terms of the Easelink investment",
-    mainAmount: "€1,500,000",
-    mainDescription: "Total Investment Amount Successfully Raised",
-    details: [
-      {
-        title: "💰 Investment Type",
-        description: "Forward Equity Agreement (FEA) - Innovative financing structure designed for early-stage growth companies"
-      },
-      {
-        title: "📈 Capital Raise Participation",
-        description: "45% of the current funding round, demonstrating significant investor confidence in Easelink's potential"
-      },
-      {
-        title: "🎯 Valuation Framework",
-        description: "Conversion pricing mechanism tied to future qualified financing rounds, protecting both investor and company interests"
-      },
-      {
-        title: "📊 Shareholding Projection",
-        description: "Estimated 1.83% - 3.70% equity stake upon conversion, depending on company valuation at conversion event"
-      }
-    ],
+    mainAmount: "€9,738,700",
+    mainDescription: "Total Investment Amount Raised",
+    
     stats: [
-      { number: "€1.5M", label: "Investment Amount" },
-      { number: "45%", label: "Round Participation" },
-      { number: "2016", label: "Company Founded" },
-      { number: "EV", label: "Charging Focus" }
+      { number: "€10 mio Pre-Money valuation", label: "Investment Amount" },
+      { number: "22", label: "Parties" },
+      { number: "42law", label: "Lead Counsel" },
+      { number: "August 4 2025", label: "Closing Date" }
     ],
-    riskAssessment: {
-      title: "Commercial Risk Assessment:",
-      description: "The conversion formula contains technical complexities that may require negotiation at conversion time. Our legal team has identified and documented all potential scenarios to ensure optimal outcomes for all parties."
+    
     }
   }
-};
+
 
 // Authentication Component
 const AuthenticationScreen = ({ onAuthenticate }: any) => {
@@ -174,9 +150,9 @@ const AuthenticationScreen = ({ onAuthenticate }: any) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [users, setUsers] = useState([
-    { id: 1, email: 'admin@42law.at', password: 'admin123', name: 'Dr. Maria Hofbausery', role: 'Managing Partner' },
-    { id: 2, email: 'lawyer@42law.at', password: 'lawyer123', name: 'Dr. Alexander Schmidt', role: 'Senior Associate' },
-    { id: 3, email: 'user@42law.at', password: 'user123', name: 'Client User', role: 'Client' }
+    { id: 1, email: 'admin@42law.at', password: 'admin123', name: 'Dr. Christof Strasser', role: 'Managing Partner' },
+    { id: 2, email: 'lawyer@42law.at', password: 'lawyer123', name: 'Dr. Michael Ademilua', role: 'Senior Associate' },
+    { id: 3, email: 'user@42law.at', password: 'user123', name: 'Client',  }
   ]);
 
   const [formData, setFormData] = useState({
@@ -430,8 +406,13 @@ const AuthenticationScreen = ({ onAuthenticate }: any) => {
 const Header = ({ companyData, onLogout, currentUser }: any) => (
   <header className="header">
     <div className="logo">
-      <div className="logo-icon">{companyData.logo}</div>
-      <span>42law Austria</span>
+      {/* Replace the logo-icon div with an img tag */}
+      <img 
+        src={companyData.logo} 
+        alt="42law Austria Logo" 
+        className="logo-image"
+      />
+      <span></span>
     </div>
     <div className="user-info">
       <div className="user-badge">
@@ -443,6 +424,7 @@ const Header = ({ companyData, onLogout, currentUser }: any) => (
     </div>
   </header>
 );
+
 
 // Navigation Component
 const Navigation = ({ navItems, activeTab, onTabChange }: any) => (
@@ -477,14 +459,44 @@ const RiskWarning = ({ title, description }: any) => (
 
 // Document Item Component
 const DocumentItem = ({ title, status, fileName, filePath }: any) => (
-  <div className="document-item">
-    <div className="document-title">{title}</div>
-    <div className="document-status">{status}</div>
-    {/* <div className="document-link">View {fileName} Document</div> */}
-    <a className="document-link" target="_blank" href={filePath}> View {fileName} Document </a>
-  </div>
+  <div className="flex justify-between items-center p-4 mb-4">
+    <div>
+      <div className="font-semibold text-lg flex items-center gap-2">
+        {/* Add PDF icon here */}
+        <img 
+          src="/pdf-icon copy.svg" 
+          alt="PDF" 
+          width="20" 
+          height="20" 
+          className="flex-shrink-0"
+        />
+        {title}
+      </div>
+      <div className="text-sm text-gray-600">{status}</div>
+    </div>
+    <div className="flex gap-3"> 
+      {/* View Button: Blue Box */} 
+      <a 
+        href={filePath} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
+        style={{ backgroundColor: "#2563EB" }} // Tailwind bg-blue-600 equivalent 
+      > 
+        👁️ View 
+      </a> 
+      {/* Download Button: Green Box */} 
+      <a 
+        href={filePath} 
+        download={fileName} 
+        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
+        style={{ backgroundColor: "#22C55E" }} // Tailwind bg-green-500 equivalent 
+      > 
+        📥 Download 
+      </a> 
+    </div> 
+  </div> 
 );
-
 // Confidential Banner Component
 const ConfidentialBanner = ({ text }: any) => (
   <div className="confidential-banner">
@@ -493,12 +505,25 @@ const ConfidentialBanner = ({ text }: any) => (
 );
 
 // Team Member Component
+// Team Member Component
 const TeamMember = ({ member }: any) => (
   <div className="team-member">
     <div className="member-avatar">{member.avatar}</div>
     <div className="member-name">{member.name}</div>
     <div className="member-role">{member.role}</div>
     <div className="member-description">{member.description}</div>
+    <div className="member-contact">
+      <a href={`mailto:${member.email}`} className="member-email">
+        <Mail size={16} />
+        {member.email}
+      </a>
+      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="member-linkedin">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        LinkedIn
+      </a>
+    </div>
   </div>
 );
 
@@ -533,14 +558,8 @@ const ClosingDocumentsPage = ({ data }: any) => (
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
 
-    <div className="info-grid">
-      <InfoCard title="Company Overview" description={data.companyInfo.overview} />
-      <InfoCard title="Investment Structure" description={data.companyInfo.investment} />
-      <InfoCard title="Estimated Shareholding" description={data.companyInfo.shareholding} />
-      <InfoCard title="Legal Review Status" description={data.companyInfo.legalStatus} />
-    </div>
+  
 
-    <RiskWarning title={data.riskWarning.title} description={data.riskWarning.description} />
 
     <div className="document-list">
       {data.documents.map((doc: any, index: number) => (
@@ -548,7 +567,7 @@ const ClosingDocumentsPage = ({ data }: any) => (
       ))}
     </div>
 
-    <ConfidentialBanner text="STRICTLY CONFIDENTIAL - 42law Austria Exclusive" />
+    <ConfidentialBanner text="STRICTLY CONFIDENTIAL - Never share documents with unauthorised parties" />
   </div>
 );
 
@@ -566,51 +585,51 @@ const TeamPage = ({ data }: any) => (
   </div>
 );
 
-// Company Page Component
-const CompanyPage = ({ data }: any) => (
-  <div className="main-card">
-    <h1 className="page-title">{data.title}</h1>
-    <p className="page-subtitle">{data.subtitle}</p>
-
-    <div className="stats-grid">
-      {data.stats.map((stat: any, index: number) => (
-        <StatCard key={index} number={stat.number} label={stat.label} />
-      ))}
-    </div>
-
-    <div className="company-values">
-      {data.values.map((value: any, index: number) => (
-        <ValueCard key={index} icon={value.icon} title={value.title} description={value.description} />
-      ))}
-    </div>
-  </div>
-);
 
 // Transaction Page Component
 const TransactionPage = ({ data }: any) => (
   <div className="main-card">
-    <h1 className="page-title">{data.title}</h1>
-    <p className="page-subtitle">{data.subtitle}</p>
+    <h1 className="page-title">{data?.title || 'Untitled'}</h1>
+    <p className="page-subtitle">{data?.subtitle || ''}</p>
 
-    <TransactionHighlight amount={data.mainAmount} description={data.mainDescription} />
+    <TransactionHighlight
+      amount={data?.mainAmount || 'N/A'}
+      description={data?.mainDescription || ''}
+    />
 
     <div className="info-grid">
-      {data.details.map((detail: any, index: number) => (
-        <InfoCard key={index} title={detail.title} description={detail.description} />
-      ))}
+      {Array.isArray(data?.details) &&
+        data.details.map((detail: any, index: number) => (
+          <InfoCard
+            key={index}
+            title={detail?.title || 'No Title'}
+            description={detail?.description || ''}
+          />
+        ))}
     </div>
 
     <div className="stats-grid">
-      {data.stats.map((stat: any, index: number) => (
-        <StatCard key={index} number={stat.number} label={stat.label} />
-      ))}
+      {Array.isArray(data?.stats) &&
+        data.stats.map((stat: any, index: number) => (
+          <StatCard
+            key={index}
+            number={stat?.number || 0}
+            label={stat?.label || ''}
+          />
+        ))}
     </div>
 
-    <RiskWarning title={data.riskAssessment.title} description={data.riskAssessment.description} />
+    {data?.riskAssessment && (
+      <RiskWarning
+        title={data.riskAssessment?.title || 'Risk Warning'}
+        description={data.riskAssessment?.description || ''}
+      />
+    )}
 
-    <ConfidentialBanner text="Transaction completed with 42law Austria legal excellence" />
+    
   </div>
 );
+
 
 // Main App Component
 const LawPlatformApp = () => {
@@ -674,8 +693,8 @@ const LawPlatformApp = () => {
         return <ClosingDocumentsPage data={platformData.closingDocuments} />;
       case 'team':
         return <TeamPage data={platformData.team} />;
-      case 'company':
-        return <CompanyPage data={platformData.company} />;
+      
+
       case 'transaction':
         return <TransactionPage data={platformData.transaction} />;
       default:
@@ -977,6 +996,12 @@ const LawPlatformApp = () => {
           font-weight: 800;
           color: #6366f1;
         }
+          .logo-image {
+  height: 50px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+}
 
         .logo-icon {
           width: 50px;
@@ -1264,9 +1289,45 @@ const LawPlatformApp = () => {
         }
 
         .member-description {
-          color: #6b7280;
-          line-height: 1.6;
-        }
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.member-contact {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.member-email, .member-linkedin {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.member-email:hover, .member-linkedin:hover {
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.2);
+  transform: translateX(5px);
+}
+
+.member-linkedin svg {
+  transition: all 0.3s ease;
+}
+
+.member-linkedin:hover svg {
+  fill: #0077b5;
+}
+}
 
         .stats-grid {
           display: grid;
