@@ -458,45 +458,82 @@ const RiskWarning = ({ title, description }: any) => (
 );
 
 // Document Item Component
-const DocumentItem = ({ title, status, fileName, filePath }: any) => (
-  <div className="flex justify-between items-center p-4 mb-4">
-    <div>
-      <div className="font-semibold text-lg flex items-center gap-2">
-        {/* Add PDF icon here */}
-        <img 
-          src="/pdf-icon copy.svg" 
-          alt="PDF" 
-          width="20" 
-          height="20" 
-          className="flex-shrink-0"
-        />
-        {title}
+const DocumentItem = ({ title, status, fileName, filePath, fileSize }: any) => {
+  const getStatusColor = (status: string) => {
+    if (status && status.includes('Completed')) return '#10B981';
+    if (status && status.includes('Under Review')) return '#F59E0B';
+    if (status && status.includes('Pending')) return '#EF4444';
+    return '#6B7280';
+  };
+
+  const getStatusIcon = (status: string) => {
+    if (status && status.includes('Completed')) return '✅';
+    if (status && status.includes('Under Review')) return '🔍';
+    if (status && status.includes('Pending')) return '⏳';
+    return '📄';
+  };
+
+  const cleanStatusText = (status: string) => {
+    if (!status) return 'Unknown';
+    return status.replace('✅ ', '').replace('🔍 ', '').replace('⏳ ', '').trim();
+  };
+
+  return (
+    <div className="enhanced-doc-item">
+      <div className="enhanced-doc-content">
+        <div className="enhanced-doc-left">
+          <div className="enhanced-doc-icon">
+            <img 
+              src="/pdf-icon copy.svg" 
+              alt="PDF" 
+              width="24" 
+              height="24" 
+            />
+          </div>
+          <div className="enhanced-doc-info">
+            <h3 className="enhanced-doc-title">{title}</h3>
+            <div className="enhanced-doc-meta">
+              <span className="enhanced-doc-filename">{fileName}</span>
+              {fileSize && <span className="enhanced-doc-size">• {fileSize}</span>}
+            </div>
+          </div>
+        </div>
+
+        <div className="enhanced-doc-status">
+          <div 
+            className="enhanced-status-badge"
+            style={{ 
+              backgroundColor: `${getStatusColor(status)}20`, 
+              color: getStatusColor(status),
+              border: `1px solid ${getStatusColor(status)}40`
+            }}
+          >
+            <span>{getStatusIcon(status)}</span>
+            <span>{cleanStatusText(status)}</span>
+          </div>
+        </div>
+
+        <div className="enhanced-doc-actions">
+          <a 
+            href={filePath} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="enhanced-action-btn enhanced-view-btn"
+          > 
+            👁️ View 
+          </a> 
+          <a 
+            href={filePath} 
+            download={fileName} 
+            className="enhanced-action-btn enhanced-download-btn"
+          > 
+            📥 Download 
+          </a> 
+        </div>
       </div>
-      <div className="text-sm text-gray-600">{status}</div>
     </div>
-    <div className="flex gap-3"> 
-      {/* View Button: Blue Box */} 
-      <a 
-        href={filePath} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
-        style={{ backgroundColor: "#2563EB" }} // Tailwind bg-blue-600 equivalent 
-      > 
-        👁️ View 
-      </a> 
-      {/* Download Button: Green Box */} 
-      <a 
-        href={filePath} 
-        download={fileName} 
-        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
-        style={{ backgroundColor: "#22C55E" }} // Tailwind bg-green-500 equivalent 
-      > 
-        📥 Download 
-      </a> 
-    </div> 
-  </div> 
-);
+  );
+};
 // Confidential Banner Component
 const ConfidentialBanner = ({ text }: any) => (
   <div className="confidential-banner">
@@ -1516,7 +1553,7 @@ const LawPlatformApp = () => {
           .page-title {
             font-size: 28px;
           }
-        }.enhanced-doc-item {
+        }  .enhanced-doc-item {
           background: linear-gradient(135deg, #ffffff, #f8fafc);
           border-radius: 20px;
           padding: 25px;
