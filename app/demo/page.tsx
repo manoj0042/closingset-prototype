@@ -23,27 +23,32 @@ const platformData = {
     title: 'Investment Agreement', 
     status: '✅ Completed', 
     fileName: '01-Investment-Agreement.pdf', 
+    description: 'This document outlines the terms under which an investor provides funding to the company, including the amount invested, equity received, rights, obligations, and conditions related to the investment.',
     filePath: 'closing-set/01-Investment-Agreement.pdf', 
     fileSize: '2.3 MB', 
   },
   { 
     title: 'Shareholder Agreement', 
     status: '✅ Completed', 
-    fileName: '02-Shareholder-Agreement.pdf', 
+    fileName: '02-Shareholder-Agreement.pdf',
+    description: 'This agreement defines the rights and responsibilities of shareholders, including voting rights, share transfers, dividend policies, and decision-making rules within the company', 
     filePath: 'closing-set/02-Shareholder-Agreement.pdf', 
     fileSize: '1.8 MB', 
   },
   { 
     title: 'Trustee Agreement', 
     status: '✅ Completed', 
-    fileName: '03-Trustee-Agreement.pdf', 
+    fileName: '03-Trustee-Agreement.pdf',
+    description: 'This document appoints a trustee to hold and manage assets (such as company shares) on behalf of another person or entity, often used for legal, tax, or administrative reasons',
     filePath: 'closing-set/03-Trustee-Agreement.pdf', 
     fileSize: '1.2 MB', 
   },
   { 
     title: 'gesellschaftsvertrag', 
-    status: '🔍 Under Review', 
+    status: '✅ Completed', 
+     
     fileName: '04-gesellschaftsvertrag.pdf', 
+    description: 'Gesellschaftsvertrag (Articles of Association) of Storebox Holding GmbH',
     filePath: 'closing-set/04-gesellschaftsvertrag.pdf', 
     fileSize: '1.5 MB', 
   },
@@ -51,6 +56,7 @@ const platformData = {
     title: 'aoGV-Protokoll', 
     status: '✅ Completed', 
     fileName: '05-aoGV-Protokoll.pdf', 
+    description: 'Protokoll of the extraordinary general meeting (aoGV) approving the financing',
     filePath: 'closing-set/05-aoGV-Protokoll.pdf', 
     fileSize: '2.0 MB', 
   },
@@ -58,6 +64,8 @@ const platformData = {
     title: 'ubernahmeeerklarung', 
     status: '✅ Completed', 
     fileName: '06-ubernahmeerklarung.pdf', 
+    description: 'This document confirms that a person or entity has agreed to take over certain obligations, such as company shares or financial responsibilities.',
+
     filePath: 'closing-set/06-ubernahmeerklarung.pdf', 
     fileSize: '1.0 MB', 
   },
@@ -65,6 +73,8 @@ const platformData = {
     title: 'Bankbestätigung', 
     status: '✅ Completed', 
     fileName: '07-Bankbestatigung.pdf', 
+    description: 'A statement from the bank confirming account ownership, available funds, or financial reliability — often required for official procedures.',
+
     filePath: 'closing-set/07-Bankbestatigung.pdf', 
     fileSize: '1.4 MB', 
   },
@@ -72,6 +82,8 @@ const platformData = {
     title: 'firmenbuchanmeldung', 
     status: '✅ Completed', 
     fileName: '08-firmenbuchanmeldung.pdf', 
+    description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
+
     filePath: 'closing-set/08-firmenbuchanmeldung.pdf', 
     fileSize: '1.6 MB', 
   },
@@ -79,13 +91,15 @@ const platformData = {
     title: 'Firmenbuchanmeldung', 
     status: '✅ Completed', 
     fileName: '09-Firmenbuchanmeldung.pdf', 
+    description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
     filePath: 'closing-set/09-Firmenbuchanmeldung.pdf', 
     fileSize: '1.3 MB', 
   },
   { 
     title: 'Eintragungsbeschluss', 
     status: '✅ Completed', 
-    fileName: '10-Eintragungsbeschluss.pdf', 
+    fileName: '10-Eintragungsbeschluss.pdf',
+    description: 'This is the official court decision confirming that the company has been successfully registered in the commercial register.',
     filePath: 'closing-set/10-Eintragungsbeschluss.pdf', 
     fileSize: '1.1 MB', 
   }
@@ -458,45 +472,88 @@ const RiskWarning = ({ title, description }: any) => (
 );
 
 // Document Item Component
-const DocumentItem = ({ title, status, fileName, filePath }: any) => (
-  <div className="flex justify-between items-center p-4 mb-4">
-    <div>
-      <div className="font-semibold text-lg flex items-center gap-2">
-        {/* Add PDF icon here */}
-        <img 
-          src="/pdf-icon copy.svg" 
-          alt="PDF" 
-          width="20" 
-          height="20" 
-          className="flex-shrink-0"
-        />
-        {title}
+const DocumentItem = ({ title, status, fileName, filePath, fileSize, description }: any) => {
+  const getStatusColor = (status: string) => {
+    if (status && status.includes('Completed')) return '#10B981';
+    if (status && status.includes('Under Review')) return '#F59E0B';
+    if (status && status.includes('Pending')) return '#EF4444';
+    return '#6B7280';
+  };
+
+  const getStatusIcon = (status: string) => {
+    if (status && status.includes('Completed')) return '✅';
+    if (status && status.includes('Under Review')) return '🔍';
+    if (status && status.includes('Pending')) return '⏳';
+    return '📄';
+  };
+
+  const cleanStatusText = (status: string) => {
+    if (!status) return 'Unknown';
+    return status.replace('✅ ', '').replace('🔍 ', '').replace('⏳ ', '').trim();
+  };
+
+  return (
+    <div className="enhanced-doc-item">
+      <div className="enhanced-doc-content">
+        <div className="enhanced-doc-left">
+          <div className="enhanced-doc-icon">
+            <img 
+              src="/pdf-icon copy.svg" 
+              alt="PDF" 
+              width="24" 
+              height="24" 
+            />
+          </div>
+          <div className="enhanced-doc-info">
+            <h3 className="enhanced-doc-title">{title}</h3>
+            <div className="enhanced-doc-meta">
+              
+{description && (
+  <div className="enhanced-doc-description">
+    {description}
+  </div>
+)}
+              <span className="enhanced-doc-filename">{fileName}</span>
+              {fileSize && <span className="enhanced-doc-size">• {fileSize}</span>}
+            </div>
+          </div>
+        </div>
+
+        <div className="enhanced-doc-status">
+          <div 
+            className="enhanced-status-badge"
+            style={{ 
+              backgroundColor: `${getStatusColor(status)}20`, 
+              color: getStatusColor(status),
+              border: `1px solid ${getStatusColor(status)}40`
+            }}
+          >
+            <span>{getStatusIcon(status)}</span>
+            <span>{cleanStatusText(status)}</span>
+          </div>
+        </div>
+
+        <div className="enhanced-doc-actions">
+          <a 
+            href={filePath} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className="enhanced-action-btn enhanced-view-btn"
+          > 
+            👁️ View 
+          </a> 
+          <a 
+            href={filePath} 
+            download={fileName} 
+            className="enhanced-action-btn enhanced-download-btn"
+          > 
+            📥 Download 
+          </a> 
+        </div>
       </div>
-      <div className="text-sm text-gray-600">{status}</div>
     </div>
-    <div className="flex gap-3"> 
-      {/* View Button: Blue Box */} 
-      <a 
-        href={filePath} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
-        style={{ backgroundColor: "#2563EB" }} // Tailwind bg-blue-600 equivalent 
-      > 
-        👁️ View 
-      </a> 
-      {/* Download Button: Green Box */} 
-      <a 
-        href={filePath} 
-        download={fileName} 
-        className="text-white font-medium py-2 px-4 rounded-lg flex items-center gap-2" 
-        style={{ backgroundColor: "#22C55E" }} // Tailwind bg-green-500 equivalent 
-      > 
-        📥 Download 
-      </a> 
-    </div> 
-  </div> 
-);
+  );
+};
 // Confidential Banner Component
 const ConfidentialBanner = ({ text }: any) => (
   <div className="confidential-banner">
@@ -563,7 +620,7 @@ const ClosingDocumentsPage = ({ data }: any) => (
 
     <div className="document-list">
       {data.documents.map((doc: any, index: number) => (
-        <DocumentItem key={index} title={doc.title} status={doc.status} fileName={doc.fileName} filePath={doc.filePath} />
+        <DocumentItem key={index} title={doc.title} status={doc.status} fileName={doc.fileName} filePath={doc.filePath} description={doc.description} />
       ))}
     </div>
 
@@ -997,7 +1054,7 @@ const LawPlatformApp = () => {
           color: #6366f1;
         }
           .logo-image {
-  height: 50px;
+           height: 50px;
   width: auto;
   max-width: 200px;
   object-fit: contain;
@@ -1515,6 +1572,209 @@ const LawPlatformApp = () => {
           
           .page-title {
             font-size: 28px;
+          }
+        }  .enhanced-doc-item {
+          background: linear-gradient(135deg, #ffffff, #f8fafc);
+          border-radius: 20px;
+          padding: 25px;
+          margin-bottom: 20px;
+          border: 1px solid rgba(99, 102, 241, 0.1);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .enhanced-doc-item::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 4px;
+          background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        }
+
+        .enhanced-doc-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15);
+          border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .enhanced-doc-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+
+        .enhanced-doc-left {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          flex: 1;
+          min-width: 200px;
+        }
+
+        .enhanced-doc-icon {
+          width: 50px;
+          height: 50px;
+          background: linear-gradient(135deg, #fef3c7, #fed7aa);
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 2px solid rgba(245, 158, 11, 0.2);
+          flex-shrink: 0;
+        }
+
+        .enhanced-doc-icon img {
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+        }
+
+        .enhanced-doc-info {
+          flex: 1;
+          min-width: 150px;
+        }
+
+        .enhanced-doc-title {
+          font-size: 18px;
+          font-weight: 700;
+          color: #1f2937;
+          margin-bottom: 8px;
+          line-height: 1.3;
+        }
+
+        .enhanced-doc-meta {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          flex-wrap: wrap;
+        }
+          
+
+        .enhanced-doc-filename {
+          color: #6b7280;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        .enhanced-doc-size {
+          color: #9ca3af;
+          font-size: 14px;
+        }
+
+        .enhanced-doc-status {
+          display: flex;
+          align-items: center;
+          margin: 0 10px;
+        }
+
+        .enhanced-status-badge {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 8px 16px;
+          border-radius: 20px;
+          font-size: 14px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          white-space: nowrap;
+        }
+
+        .enhanced-doc-actions {
+          display: flex;
+          gap: 10px;
+          flex-shrink: 0;
+        }
+
+        .enhanced-action-btn {
+          padding: 10px 18px;
+          border-radius: 12px;
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 14px;
+          transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          cursor: pointer;
+          border: none;
+          white-space: nowrap;
+        }
+
+        .enhanced-view-btn {
+          background: linear-gradient(135deg, #6366f1, #8b5cf6);
+          color: white;
+          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .enhanced-view-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .enhanced-download-btn {
+          background: linear-gradient(135deg, #10b981, #059669);
+          color: white;
+          box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .enhanced-download-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        @media (max-width: 768px) {
+          .enhanced-doc-content {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 15px;
+          }
+
+          .enhanced-doc-left {
+            min-width: auto;
+          }
+
+          .enhanced-doc-status {
+            margin: 0;
+            justify-content: center;
+          }
+
+          .enhanced-doc-actions {
+            justify-content: center;
+            flex-wrap: wrap;
+          }
+
+          .enhanced-action-btn {
+            flex: 1;
+            min-width: 120px;
+            justify-content: center;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .enhanced-doc-item {
+            padding: 20px;
+          }
+
+          .enhanced-doc-title {
+            font-size: 16px;
+          }
+
+          .enhanced-doc-left {
+            gap: 12px;
+          }
+
+          .enhanced-doc-icon {
+            width: 45px;
+            height: 45px;
+          }
+
+          .enhanced-action-btn {
+            padding: 8px 15px;
+            font-size: 13px;
           }
         }
       `}</style>
