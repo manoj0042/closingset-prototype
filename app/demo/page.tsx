@@ -1,11 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { Eye, EyeOff, Lock, User, Mail, Shield } from 'lucide-react';
-
+import './styles.css';
 // JSON Data Configuration
 const platformData = {
   profile: {
-    logo:  "/42Law Logo.svg",
+    logo: "/42Law Logo.svg",
     currentDate: "July 28, 2025"
   },
   navigation: [
@@ -16,93 +16,93 @@ const platformData = {
   closingDocuments: {
     title: "Series B-14 Equity Financing",
     subtitle: "€9.7 mio Equity Financing of Storebox Holding GmbH",
-   
-      
+
+
     documents: [
-      { 
-    title: 'Investment Agreement', 
-    status: '✅ Completed', 
-    fileName: '01-Investment-Agreement.pdf', 
-    description: 'This document outlines the terms under which an investor provides funding to the company, including the amount invested, equity received, rights, obligations, and conditions related to the investment.',
-    filePath: 'closing-set/01-Investment-Agreement.pdf', 
-    fileSize: '2.3 MB', 
-  },
-  { 
-    title: 'Shareholder Agreement', 
-    status: '✅ Completed', 
-    fileName: '02-Shareholder-Agreement.pdf',
-    description: 'This agreement defines the rights and responsibilities of shareholders, including voting rights, share transfers, dividend policies, and decision-making rules within the company', 
-    filePath: 'closing-set/02-Shareholder-Agreement.pdf', 
-    fileSize: '1.8 MB', 
-  },
-  { 
-    title: 'Trustee Agreement', 
-    status: '✅ Completed', 
-    fileName: '03-Trustee-Agreement.pdf',
-    description: 'This document appoints a trustee to hold and manage assets (such as company shares) on behalf of another person or entity, often used for legal, tax, or administrative reasons',
-    filePath: 'closing-set/03-Trustee-Agreement.pdf', 
-    fileSize: '1.2 MB', 
-  },
-  { 
-    title: 'gesellschaftsvertrag', 
-    status: '✅ Completed', 
-     
-    fileName: '04-gesellschaftsvertrag.pdf', 
-    description: 'Gesellschaftsvertrag (Articles of Association) of Storebox Holding GmbH',
-    filePath: 'closing-set/04-gesellschaftsvertrag.pdf', 
-    fileSize: '1.5 MB', 
-  },
-  { 
-    title: 'aoGV-Protokoll', 
-    status: '✅ Completed', 
-    fileName: '05-aoGV-Protokoll.pdf', 
-    description: 'Protokoll of the extraordinary general meeting (aoGV) approving the financing',
-    filePath: 'closing-set/05-aoGV-Protokoll.pdf', 
-    fileSize: '2.0 MB', 
-  },
-  { 
-    title: 'ubernahmeeerklarung', 
-    status: '✅ Completed', 
-    fileName: '06-ubernahmeerklarung.pdf', 
-    description: 'This document confirms that a person or entity has agreed to take over certain obligations, such as company shares or financial responsibilities.',
+      {
+        title: 'Investment Agreement',
+        status: '✅ Completed',
+        fileName: '01-Investment-Agreement.pdf',
+        description: 'This document outlines the terms under which an investor provides funding to the company, including the amount invested, equity received, rights, obligations, and conditions related to the investment.',
+        filePath: 'closing-set/01-Investment-Agreement.pdf',
+        fileSize: '2.3 MB',
+      },
+      {
+        title: 'Shareholder Agreement',
+        status: '✅ Completed',
+        fileName: '02-Shareholder-Agreement.pdf',
+        description: 'This agreement defines the rights and responsibilities of shareholders, including voting rights, share transfers, dividend policies, and decision-making rules within the company',
+        filePath: 'closing-set/02-Shareholder-Agreement.pdf',
+        fileSize: '1.8 MB',
+      },
+      {
+        title: 'Trustee Agreement',
+        status: '✅ Completed',
+        fileName: '03-Trustee-Agreement.pdf',
+        description: 'This document appoints a trustee to hold and manage assets (such as company shares) on behalf of another person or entity, often used for legal, tax, or administrative reasons',
+        filePath: 'closing-set/03-Trustee-Agreement.pdf',
+        fileSize: '1.2 MB',
+      },
+      {
+        title: 'gesellschaftsvertrag',
+        status: '✅ Completed',
 
-    filePath: 'closing-set/06-ubernahmeerklarung.pdf', 
-    fileSize: '1.0 MB', 
-  },
-  { 
-    title: 'Bankbestätigung', 
-    status: '✅ Completed', 
-    fileName: '07-Bankbestatigung.pdf', 
-    description: 'A statement from the bank confirming account ownership, available funds, or financial reliability — often required for official procedures.',
+        fileName: '04-gesellschaftsvertrag.pdf',
+        description: 'Gesellschaftsvertrag (Articles of Association) of Storebox Holding GmbH',
+        filePath: 'closing-set/04-gesellschaftsvertrag.pdf',
+        fileSize: '1.5 MB',
+      },
+      {
+        title: 'aoGV-Protokoll',
+        status: '✅ Completed',
+        fileName: '05-aoGV-Protokoll.pdf',
+        description: 'Protokoll of the extraordinary general meeting (aoGV) approving the financing',
+        filePath: 'closing-set/05-aoGV-Protokoll.pdf',
+        fileSize: '2.0 MB',
+      },
+      {
+        title: 'ubernahmeeerklarung',
+        status: '✅ Completed',
+        fileName: '06-ubernahmeerklarung.pdf',
+        description: 'This document confirms that a person or entity has agreed to take over certain obligations, such as company shares or financial responsibilities.',
 
-    filePath: 'closing-set/07-Bankbestatigung.pdf', 
-    fileSize: '1.4 MB', 
-  },
-  { 
-    title: 'firmenbuchanmeldung', 
-    status: '✅ Completed', 
-    fileName: '08-firmenbuchanmeldung.pdf', 
-    description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
+        filePath: 'closing-set/06-ubernahmeerklarung.pdf',
+        fileSize: '1.0 MB',
+      },
+      {
+        title: 'Bankbestätigung',
+        status: '✅ Completed',
+        fileName: '07-Bankbestatigung.pdf',
+        description: 'A statement from the bank confirming account ownership, available funds, or financial reliability — often required for official procedures.',
 
-    filePath: 'closing-set/08-firmenbuchanmeldung.pdf', 
-    fileSize: '1.6 MB', 
-  },
-  { 
-    title: 'Firmenbuchanmeldung', 
-    status: '✅ Completed', 
-    fileName: '09-Firmenbuchanmeldung.pdf', 
-    description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
-    filePath: 'closing-set/09-Firmenbuchanmeldung.pdf', 
-    fileSize: '1.3 MB', 
-  },
-  { 
-    title: 'Eintragungsbeschluss', 
-    status: '✅ Completed', 
-    fileName: '10-Eintragungsbeschluss.pdf',
-    description: 'This is the official court decision confirming that the company has been successfully registered in the commercial register.',
-    filePath: 'closing-set/10-Eintragungsbeschluss.pdf', 
-    fileSize: '1.1 MB', 
-  }
+        filePath: 'closing-set/07-Bankbestatigung.pdf',
+        fileSize: '1.4 MB',
+      },
+      {
+        title: 'firmenbuchanmeldung',
+        status: '✅ Completed',
+        fileName: '08-firmenbuchanmeldung.pdf',
+        description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
+
+        filePath: 'closing-set/08-firmenbuchanmeldung.pdf',
+        fileSize: '1.6 MB',
+      },
+      {
+        title: 'Firmenbuchanmeldung',
+        status: '✅ Completed',
+        fileName: '09-Firmenbuchanmeldung.pdf',
+        description: 'This document shows the official application for registering the company in the Austrian commercial register (Firmenbuch), including basic company details',
+        filePath: 'closing-set/09-Firmenbuchanmeldung.pdf',
+        fileSize: '1.3 MB',
+      },
+      {
+        title: 'Eintragungsbeschluss',
+        status: '✅ Completed',
+        fileName: '10-Eintragungsbeschluss.pdf',
+        description: 'This is the official court decision confirming that the company has been successfully registered in the commercial register.',
+        filePath: 'closing-set/10-Eintragungsbeschluss.pdf',
+        fileSize: '1.1 MB',
+      }
 
     ]
   },
@@ -135,26 +135,27 @@ const platformData = {
         email: "s.priya@42law.com",
         linkedin: "https://linkedin.com/in/sathya-priya"
       },
-      
+
 
     ]
   },
-  
+
   transaction: {
     title: "Transaction Overview",
     subtitle: "Financial highlights and commercial terms of the Easelink investment",
     mainAmount: "€9,738,700",
     mainDescription: "Total Investment Amount Raised",
-    
+
     stats: [
-      { number: "€10 mio Pre-Money valuation", label: "Investment Amount" },
-      { number: "22", label: "Parties" },
-      { number: "42law", label: "Lead Counsel" },
-      { number: "August 4 2025", label: "Closing Date" }
-    ],
-    
-    }
+      { number: "€10 million", label: "Pre-Money Valuation", icon: "💎", color: "#7CB342" },
+      { number: "22", label: "Transaction Parties", icon: "👥", color: "#5A9E32" },
+      { number: "42law", label: "Lead Legal Counsel", icon: "⚖️", color: "#6BB946" },
+      { number: "August 4, 2025", label: "Official Closing Date", icon: "📅", color: "#4A8A2A" }
+    ]
+
   }
+}
+
 
 
 // Authentication Component
@@ -166,7 +167,7 @@ const AuthenticationScreen = ({ onAuthenticate }: any) => {
   const [users, setUsers] = useState([
     { id: 1, email: 'admin@42law.at', password: 'admin123', name: 'Dr. Christof Strasser', role: 'Managing Partner' },
     { id: 2, email: 'lawyer@42law.at', password: 'lawyer123', name: 'Dr. Michael Ademilua', role: 'Senior Associate' },
-    { id: 3, email: 'user@42law.at', password: 'user123', name: 'Client',  }
+    { id: 3, email: 'user@42law.at', password: 'user123', name: 'Client', }
   ]);
 
   const [formData, setFormData] = useState({
@@ -274,6 +275,29 @@ const AuthenticationScreen = ({ onAuthenticate }: any) => {
       setLoading(false);
     }, 1000);
   };
+
+
+  useEffect(() => {
+    const hide1PasswordNotification = () => {
+      const host = document.querySelector('com-1password-notification');
+      if (host && host.shadowRoot) {
+        const notification = host.shadowRoot.querySelector('.dm');
+        if (notification instanceof HTMLElement) {
+          notification.style.display = 'none';
+        }
+      }
+    };
+
+    // Try once on mount
+    hide1PasswordNotification();
+
+    // Also observe DOM changes in case 1Password injects it later
+    const observer = new MutationObserver(hide1PasswordNotification);
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, []);
+
 
   return (
     <div className="auth-container">
@@ -421,9 +445,9 @@ const Header = ({ companyData, onLogout, currentUser }: any) => (
   <header className="header">
     <div className="logo">
       {/* Replace the logo-icon div with an img tag */}
-      <img 
-        src={companyData.logo} 
-        alt="42law Austria Logo" 
+      <img
+        src={companyData.logo}
+        alt="42law Austria Logo"
         className="logo-image"
       />
       <span></span>
@@ -474,9 +498,9 @@ const RiskWarning = ({ title, description }: any) => (
 // Document Item Component
 const DocumentItem = ({ title, status, fileName, filePath, fileSize, description }: any) => {
   const getStatusColor = (status: string) => {
-    if (status && status.includes('Completed')) return '#10B981';
-    if (status && status.includes('Under Review')) return '#F59E0B';
-    if (status && status.includes('Pending')) return '#EF4444';
+    if (status && status.includes('Completed')) return '#7CB342'; // Green
+    if (status && status.includes('Under Review')) return '#F59E0B'; // Keep orange
+    if (status && status.includes('Pending')) return '#EF4444'; // Keep red
     return '#6B7280';
   };
 
@@ -497,22 +521,22 @@ const DocumentItem = ({ title, status, fileName, filePath, fileSize, description
       <div className="enhanced-doc-content">
         <div className="enhanced-doc-left">
           <div className="enhanced-doc-icon">
-            <img 
-              src="/pdf-icon copy.svg" 
-              alt="PDF" 
-              width="24" 
-              height="24" 
+            <img
+              src="/pdf-icon copy.svg"
+              alt="PDF"
+              width="24"
+              height="24"
             />
           </div>
           <div className="enhanced-doc-info">
             <h3 className="enhanced-doc-title">{title}</h3>
             <div className="enhanced-doc-meta">
-              
-{description && (
-  <div className="enhanced-doc-description">
-    {description}
-  </div>
-)}
+
+              {description && (
+                <div className="enhanced-doc-description">
+                  {description}
+                </div>
+              )}
               <span className="enhanced-doc-filename">{fileName}</span>
               {fileSize && <span className="enhanced-doc-size">• {fileSize}</span>}
             </div>
@@ -520,10 +544,10 @@ const DocumentItem = ({ title, status, fileName, filePath, fileSize, description
         </div>
 
         <div className="enhanced-doc-status">
-          <div 
+          <div
             className="enhanced-status-badge"
-            style={{ 
-              backgroundColor: `${getStatusColor(status)}20`, 
+            style={{
+              backgroundColor: `${getStatusColor(status)}20`,
               color: getStatusColor(status),
               border: `1px solid ${getStatusColor(status)}40`
             }}
@@ -534,21 +558,21 @@ const DocumentItem = ({ title, status, fileName, filePath, fileSize, description
         </div>
 
         <div className="enhanced-doc-actions">
-          <a 
-            href={filePath} 
-            target="_blank" 
-            rel="noopener noreferrer" 
+          <a
+            href={filePath}
+            target="_blank"
+            rel="noopener noreferrer"
             className="enhanced-action-btn enhanced-view-btn"
-          > 
-            👁️ View 
-          </a> 
-          <a 
-            href={filePath} 
-            download={fileName} 
+          >
+            👁️ View
+          </a>
+          <a
+            href={filePath}
+            download={fileName}
             className="enhanced-action-btn enhanced-download-btn"
-          > 
-            📥 Download 
-          </a> 
+          >
+            📥 Download
+          </a>
         </div>
       </div>
     </div>
@@ -576,7 +600,7 @@ const TeamMember = ({ member }: any) => (
       </a>
       <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="member-linkedin">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
         </svg>
         LinkedIn
       </a>
@@ -585,10 +609,15 @@ const TeamMember = ({ member }: any) => (
 );
 
 // Stat Card Component
-const StatCard = ({ number, label }: any) => (
-  <div className="stat-card">
-    <div className="stat-number">{number}</div>
-    <div className="stat-label">{label}</div>
+const StatCard = ({ number, label, icon, color }: any) => (
+  <div className="modern-stat-card" style={{ '--accent-color': color } as any}>
+    <div className="stat-glow"></div>
+    <div className="stat-icon">{icon}</div>
+    <div className="stat-content">
+      <div className="stat-number">{number}</div>
+      <div className="stat-label">{label}</div>
+    </div>
+    <div className="stat-pulse"></div>
   </div>
 );
 
@@ -615,7 +644,7 @@ const ClosingDocumentsPage = ({ data }: any) => (
     <h1 className="page-title">{data.title}</h1>
     <p className="page-subtitle">{data.subtitle}</p>
 
-  
+
 
 
     <div className="document-list">
@@ -683,7 +712,7 @@ const TransactionPage = ({ data }: any) => (
       />
     )}
 
-    
+
   </div>
 );
 
@@ -750,7 +779,7 @@ const LawPlatformApp = () => {
         return <ClosingDocumentsPage data={platformData.closingDocuments} />;
       case 'team':
         return <TeamPage data={platformData.team} />;
-      
+
 
       case 'transaction':
         return <TransactionPage data={platformData.transaction} />;
@@ -769,7 +798,7 @@ const LawPlatformApp = () => {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: vga white; /* Light gray instead of purple gradient */
             padding: 20px;
           }
 
@@ -845,7 +874,7 @@ const LawPlatformApp = () => {
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            color: #6b7280;
+            color: vga white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1012,772 +1041,7 @@ const LawPlatformApp = () => {
 
   return (
     <>
-      <style>{`
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
 
-        body {
-          font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          min-height: 100vh;
-          color: #333;
-        }
-
-        .container {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-
-        .header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 20px;
-          padding: 20px 30px;
-          margin-bottom: 30px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .logo {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          font-size: 28px;
-          font-weight: 800;
-          color: #6366f1;
-        }
-          .logo-image {
-           height: 50px;
-  width: auto;
-  max-width: 200px;
-  object-fit: contain;
-}
-
-        .logo-icon {
-          width: 50px;
-          height: 50px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-weight: bold;
-          font-size: 18px;
-        }
-           .logo span {
-          font-size: 28px;
-          font-weight: 800;
-          color: #1f2937;
-          white-space: nowrap;
-        }
-
-        .user-info {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-        }
-
-        .user-badge {
-          background: linear-gradient(135deg, #10b981, #059669);
-          color: white;
-          padding: 10px 20px;
-          border-radius: 25px;
-          font-weight: 600;
-          box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-        }
-
-        .date-badge {
-          background: linear-gradient(135deg, #f59e0b, #f97316);
-          color: white;
-          padding: 10px 20px;
-          border-radius: 25px;
-          font-weight: 600;
-          box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-        }
-
-        .logout-btn {
-          background: linear-gradient(135deg, #ef4444, #dc2626);
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 25px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
-        }
-
-        .logout-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 35px rgba(239, 68, 68, 0.4);
-        }
-
-        .nav-tabs {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 20px;
-          padding: 8px;
-          margin-bottom: 30px;
-          display: flex;
-          gap: 8px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .nav-tab {
-          flex: 1;
-          padding: 15px 20px;
-          background: transparent;
-          border: none;
-          border-radius: 12px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          color: #6b7280;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-        }
-
-        .nav-tab.active {
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          color: white;
-          box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-          transform: translateY(-2px);
-        }
-
-        .nav-tab:hover:not(.active) {
-          background: rgba(99, 102, 241, 0.1);
-          color: #6366f1;
-        }
-
-        .main-card {
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border-radius: 25px;
-          padding: 40px;
-          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          margin-bottom: 30px;
-        }
-
-        .page-title {
-          font-size: 36px;
-          font-weight: 800;
-          color: #1f2937;
-          margin-bottom: 15px;
-          background: linear-gradient(135deg, #1f2937, #6366f1);
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          text-align: center;
-        }
-
-        .page-subtitle {
-          font-size: 18px;
-          color: #6b7280;
-          text-align: center;
-          margin-bottom: 40px;
-        }
-
-        .info-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 25px;
-          margin-bottom: 30px;
-        }
-
-        .info-card {
-          background: linear-gradient(135deg, #f8fafc, #e2e8f0);
-          border-radius: 20px;
-          padding: 25px;
-          border-left: 6px solid #6366f1;
-          transition: all 0.3s ease;
-        }
-
-        .info-card:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .info-card h3 {
-          color: #1f2937;
-          font-weight: 700;
-          margin-bottom: 10px;
-          font-size: 16px;
-        }
-
-        .info-card p {
-          color: #4b5563;
-          line-height: 1.6;
-        }
-
-        .risk-warning {
-          background: linear-gradient(135deg, #fef3c7, #fed7aa);
-          border-radius: 20px;
-          padding: 25px;
-          margin: 30px 0;
-          border-left: 6px solid #f59e0b;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .risk-warning::before {
-          content: "⚠️";
-          position: absolute;
-          top: 25px;
-          left: 25px;
-          font-size: 24px;
-        }
-
-        .risk-warning h4 {
-          color: #92400e;
-          font-weight: 700;
-          margin-left: 40px;
-          margin-bottom: 10px;
-        }
-
-        .risk-warning p {
-          color: #78350f;
-          margin-left: 40px;
-          line-height: 1.6;
-        }
-
-        .confidential-banner {
-          background: linear-gradient(135deg, #ef4444, #dc2626);
-          color: white;
-          text-align: center;
-          padding: 20px;
-          border-radius: 20px;
-          font-weight: 700;
-          font-size: 18px;
-          margin: 30px 0;
-          box-shadow: 0 15px 35px rgba(239, 68, 68, 0.3);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .confidential-banner::before {
-          content: "";
-          position: absolute;
-          top: -50%;
-          left: -50%;
-          width: 200%;
-          height: 200%;
-          background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
-          transform: rotate(45deg);
-          animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-          0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-        }
-
-        .team-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-          gap: 30px;
-        }
-
-        .team-member {
-          background: linear-gradient(135deg, #ffffff, #f8fafc);
-          border-radius: 25px;
-          padding: 30px;
-          text-align: center;
-          transition: all 0.3s ease;
-          border: 1px solid rgba(99, 102, 241, 0.1);
-          position: relative;
-          overflow: hidden;
-        }
-
-        .team-member::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .team-member:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 25px 50px rgba(99, 102, 241, 0.2);
-        }
-
-        .member-avatar {
-          width: 100px;
-          height: 100px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          border-radius: 50%;
-          margin: 0 auto 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 36px;
-          font-weight: bold;
-        }
-
-        .member-name {
-          font-size: 24px;
-          font-weight: 700;
-          color: #1f2937;
-          margin-bottom: 8px;
-        }
-
-        .member-role {
-          color: #6366f1;
-          font-weight: 600;
-          margin-bottom: 15px;
-        }
-
-        .member-description {
-  color: #6b7280;
-  line-height: 1.6;
-}
-
-.member-contact {
-  margin-top: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.member-email, .member-linkedin {
-  color: #6366f1;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: rgba(99, 102, 241, 0.1);
-}
-
-.member-email:hover, .member-linkedin:hover {
-  color: #4f46e5;
-  background: rgba(99, 102, 241, 0.2);
-  transform: translateX(5px);
-}
-
-.member-linkedin svg {
-  transition: all 0.3s ease;
-}
-
-.member-linkedin:hover svg {
-  fill: #0077b5;
-}
-}
-
-        .stats-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-          gap: 25px;
-          margin: 30px 0;
-        }
-
-        .stat-card {
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          border-radius: 25px;
-          padding: 30px;
-          color: white;
-          text-align: center;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .stat-card::before {
-          content: "";
-          position: absolute;
-          top: -50%;
-          right: -50%;
-          width: 100px;
-          height: 100px;
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 50%;
-        }
-
-        .stat-number {
-          font-size: 42px;
-          font-weight: 800;
-          margin-bottom: 10px;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-label {
-          font-size: 16px;
-          opacity: 0.9;
-          font-weight: 600;
-        }
-
-        .company-values {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-          gap: 25px;
-          margin: 30px 0;
-        }
-
-        .value-card {
-          background: linear-gradient(135deg, #fef3c7, #fed7aa);
-          border-radius: 20px;
-          padding: 30px;
-          position: relative;
-          overflow: hidden;
-          border: 1px solid rgba(245, 158, 11, 0.2);
-        }
-
-        .value-icon {
-          width: 60px;
-          height: 60px;
-          background: linear-gradient(135deg, #f59e0b, #f97316);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          color: white;
-          font-size: 24px;
-          margin-bottom: 20px;
-        }
-
-        .value-title {
-          font-size: 20px;
-          font-weight: 700;
-          color: #92400e;
-          margin-bottom: 10px;
-        }
-
-        .value-description {
-          color: #78350f;
-          line-height: 1.6;
-        }
-
-        .transaction-highlight {
-          background: linear-gradient(135deg, #10b981, #059669);
-          border-radius: 25px;
-          padding: 40px;
-          color: white;
-          text-align: center;
-          margin: 30px 0;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .transaction-highlight::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-        }
-
-        .transaction-amount {
-          font-size: 48px;
-          font-weight: 800;
-          margin-bottom: 15px;
-          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .transaction-description {
-          font-size: 18px;
-          opacity: 0.9;
-          font-weight: 500;
-        }
-
-        .document-list {
-          display: grid;
-          gap: 20px;
-          margin: 30px 0;
-        }
-
-        .document-item {
-          background: linear-gradient(135deg, #ffffff, #f8fafc);
-          border-radius: 15px;
-          padding: 25px;
-          border-left: 4px solid #6366f1;
-          transition: all 0.3s ease;
-          cursor: pointer;
-        }
-
-        .document-item:hover {
-          transform: translateX(10px);
-          box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
-        }
-
-        .document-title {
-          font-weight: 700;
-          color: #1f2937;
-          margin-bottom: 5px;
-        }
-
-        .document-status {
-          color: #10b981;
-          font-size: 14px;
-          font-weight: 600;
-          margin-bottom: 10px;
-        }
-
-        .document-link {
-          color: #6366f1;
-          font-weight: 600;
-          text-decoration: none;
-          cursor: pointer;
-        }
-
-        .document-link:hover {
-          text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-          .container {
-            padding: 15px;
-          }
-          
-          .header {
-            flex-direction: column;
-            gap: 15px;
-            text-align: center;
-          }
-
-          .user-info {
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-          
-          .nav-tabs {
-            flex-direction: column;
-          }
-          
-          .main-card {
-            padding: 25px;
-          }
-          
-          .page-title {
-            font-size: 28px;
-          }
-        }  .enhanced-doc-item {
-          background: linear-gradient(135deg, #ffffff, #f8fafc);
-          border-radius: 20px;
-          padding: 25px;
-          margin-bottom: 20px;
-          border: 1px solid rgba(99, 102, 241, 0.1);
-          transition: all 0.3s ease;
-          position: relative;
-          overflow: hidden;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .enhanced-doc-item::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-        }
-
-        .enhanced-doc-item:hover {
-          transform: translateY(-5px);
-          box-shadow: 0 15px 35px rgba(99, 102, 241, 0.15);
-          border-color: rgba(99, 102, 241, 0.2);
-        }
-
-        .enhanced-doc-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 20px;
-          flex-wrap: wrap;
-        }
-
-        .enhanced-doc-left {
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          flex: 1;
-          min-width: 200px;
-        }
-
-        .enhanced-doc-icon {
-          width: 50px;
-          height: 50px;
-          background: linear-gradient(135deg, #fef3c7, #fed7aa);
-          border-radius: 12px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          border: 2px solid rgba(245, 158, 11, 0.2);
-          flex-shrink: 0;
-        }
-
-        .enhanced-doc-icon img {
-          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-        }
-
-        .enhanced-doc-info {
-          flex: 1;
-          min-width: 150px;
-        }
-
-        .enhanced-doc-title {
-          font-size: 18px;
-          font-weight: 700;
-          color: #1f2937;
-          margin-bottom: 8px;
-          line-height: 1.3;
-        }
-
-        .enhanced-doc-meta {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-          
-
-        .enhanced-doc-filename {
-          color: #6b7280;
-          font-size: 14px;
-          font-weight: 500;
-        }
-
-        .enhanced-doc-size {
-          color: #9ca3af;
-          font-size: 14px;
-        }
-
-        .enhanced-doc-status {
-          display: flex;
-          align-items: center;
-          margin: 0 10px;
-        }
-
-        .enhanced-status-badge {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 8px 16px;
-          border-radius: 20px;
-          font-size: 14px;
-          font-weight: 600;
-          transition: all 0.3s ease;
-          white-space: nowrap;
-        }
-
-        .enhanced-doc-actions {
-          display: flex;
-          gap: 10px;
-          flex-shrink: 0;
-        }
-
-        .enhanced-action-btn {
-          padding: 10px 18px;
-          border-radius: 12px;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 14px;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          cursor: pointer;
-          border: none;
-          white-space: nowrap;
-        }
-
-        .enhanced-view-btn {
-          background: linear-gradient(135deg, #6366f1, #8b5cf6);
-          color: white;
-          box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
-        }
-
-        .enhanced-view-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
-        }
-
-        .enhanced-download-btn {
-          background: linear-gradient(135deg, #10b981, #059669);
-          color: white;
-          box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
-        }
-
-        .enhanced-download-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
-        }
-
-        @media (max-width: 768px) {
-          .enhanced-doc-content {
-            flex-direction: column;
-            align-items: stretch;
-            gap: 15px;
-          }
-
-          .enhanced-doc-left {
-            min-width: auto;
-          }
-
-          .enhanced-doc-status {
-            margin: 0;
-            justify-content: center;
-          }
-
-          .enhanced-doc-actions {
-            justify-content: center;
-            flex-wrap: wrap;
-          }
-
-          .enhanced-action-btn {
-            flex: 1;
-            min-width: 120px;
-            justify-content: center;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .enhanced-doc-item {
-            padding: 20px;
-          }
-
-          .enhanced-doc-title {
-            font-size: 16px;
-          }
-
-          .enhanced-doc-left {
-            gap: 12px;
-          }
-
-          .enhanced-doc-icon {
-            width: 45px;
-            height: 45px;
-          }
-
-          .enhanced-action-btn {
-            padding: 8px 15px;
-            font-size: 13px;
-          }
-        }
-      `}</style>
 
       <div className="container">
         <Header
